@@ -288,6 +288,7 @@ var WKWebView = React.createClass({
         key="webViewKey"
         style={webViewStyles}
         source={resolveAssetSource(source)}
+        httpAuth={this.props.httpAuth}
         injectedJavaScript={this.props.injectedJavaScript}
         bounces={this.props.bounces}
         scrollEnabled={this.props.scrollEnabled}
