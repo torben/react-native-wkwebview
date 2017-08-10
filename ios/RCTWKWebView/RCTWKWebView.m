@@ -436,4 +436,16 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   return nil;
 }
 
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(nonnull NSURLAuthenticationChallenge *)challenge completionHandler:(nonnull void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+  if (_httpAuth) {
+    NSString *user = [RCTConvert NSString:_httpAuth[@"user"]];
+    NSString *password = [RCTConvert NSString:_httpAuth[@"password"]];
+    NSURLCredential *creds = [[NSURLCredential alloc] initWithUser:user password:password persistence:NSURLCredentialPersistencePermanent];
+    // [challenge.sender useCredential:creds forAuthenticationChallenge:challenge];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, creds);
+  } else {
+    completionHandler(NSURLSessionAuthChallengeUseCredential, nil);
+  }
+}
+
 @end

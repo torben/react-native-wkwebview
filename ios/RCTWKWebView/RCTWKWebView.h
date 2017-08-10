@@ -27,6 +27,7 @@ shouldStartLoadForRequest:(NSMutableDictionary<NSString *, id> *)request
 @property (nonatomic, weak) id<RCTWKWebViewDelegate> delegate;
 
 @property (nonatomic, copy) NSDictionary *source;
+@property (nonatomic, copy) NSDictionary *httpAuth;
 @property (nonatomic, assign) UIEdgeInsets contentInset;
 @property (nonatomic, assign) BOOL automaticallyAdjustContentInsets;
 @property (nonatomic, assign) BOOL openNewWindowInWebView;

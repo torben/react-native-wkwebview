@@ -91,6 +91,13 @@ var WKWebView = React.createClass({
       'Use the `source` prop instead.'
     ),
 
+    httpAuth: PropTypes.oneOfType([
+      PropTypes.shape({
+        login: PropTypes.string,
+        password: PropTypes.string,
+      })
+    ]),
+
     /**
      * Loads static html or a uri (with optional headers) in the WebView.
      */
