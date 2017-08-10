@@ -64,10 +64,19 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     WKUserContentController* userController = [[WKUserContentController alloc]init];
     [userController addScriptMessageHandler:[[WeakScriptMessageDelegate alloc] initWithDelegate:self] name:@"reactNative"];
     config.userContentController = userController;
+
+    config.allowsInlineMediaPlayback = YES;
+    config.allowsPictureInPictureMediaPlayback = YES;
+    config.mediaTypesRequiringUserActionForPlayback = NO;
+    config.applicationNameForUserAgent = @"Pelvina";
     
     _webView = [[WKWebView alloc] initWithFrame:self.bounds configuration:config];
     _webView.UIDelegate = self;
     _webView.navigationDelegate = self;
+
+    _webView.scrollView.bounces = YES;
+    _webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+
     [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [self addSubview:_webView];
   }
